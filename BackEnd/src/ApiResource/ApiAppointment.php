@@ -5,17 +5,16 @@ namespace App\ApiResource;
 use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Appointment;
 
-#[ApiResource(
+/* #[ApiResource(
     operations: [
-        // Opérations par défaut (GET, POST, PUT, DELETE)
-/*         new GetCollection(),
+        new GetCollection(),
         new Get(),
         new Post(),
         new Put(),
-        new Delete(), */
+        new Delete(),
     ],
     resource: Appointment::class
-)]
+)] */
 
 class AppointmentResource
 {
