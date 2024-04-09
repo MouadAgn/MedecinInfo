@@ -3,12 +3,22 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+// use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AppointmentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AppointmentRepository::class)]
+
+/**
+ * @ApiResource(
+ *     collectionOperations={"get", "post"},
+ *     itemOperations={"get", "put", "delete"}
+ * )
+ */
+
 #[ApiResource()]
+
 class Appointment
 {
     #[ORM\Id]
@@ -16,11 +26,17 @@ class Appointment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $Date = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $Time = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Comment = null;
+
+    #[ORM\ManyToOne(inversedBy: 'appointment')]
+    private ?Patient $patient = null;
 
     public function getId(): ?int
     {
@@ -39,6 +55,18 @@ class Appointment
         return $this;
     }
 
+    public function getTime(): ?\DateTimeInterface
+    {
+        return $this->Time;
+    }
+
+    public function setTime(\DateTimeInterface $Time): static
+    {
+        $this->Time = $Time;
+
+        return $this;
+    }
+
     public function getComment(): ?string
     {
         return $this->Comment;
@@ -50,4 +78,18 @@ class Appointment
 
         return $this;
     }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?Patient $patient): static
+    {
+        $this->patient = $patient;
+
+        return $this;
+    }
+
+
 }
