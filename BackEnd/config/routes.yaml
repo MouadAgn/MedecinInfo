@@ -1,3 +1,11 @@
 controllers:
-    resource: ../src/Controller/
+    resource: 
+        path: ../src/Controller/
+        namespace: App\Controller
     type: attribute
+
+# config/routes.yaml
+appointment_routes:
+    resource: ../src/Controller/AppointmentController.php
+    type: annotation
+    prefix: /api
