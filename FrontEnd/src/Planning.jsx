@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './Planning.css';
 
+import Header from './Header.jsx';
+
 function Planning() {
     const [data, setData] = useState([]);
 
@@ -22,6 +24,8 @@ function Planning() {
     }, []);
 
   return (
+    <div>
+        <Header />
     <table>
         <caption>Liste des rendez-vous</caption>
         <thead>
@@ -35,7 +39,7 @@ function Planning() {
         <tbody>
             {data && data.map(appointment => (
                 <tr key={appointment['@id']}>
-                    <td>Nom</td>
+                    <td>{appointment.patient}</td>
                     <td>{appointment.Date}</td>
                     <td>{appointment.Time}</td>
                     <td>{appointment.Comment}</td>
@@ -43,17 +47,7 @@ function Planning() {
             ))}
         </tbody>
     </table>
-/*         <h1>Liste des rendez-vous</h1>
-        <ul>
-            {data && data.map(appointment => (
-                <li key={appointment['@id']}>
-                    <p>{appointment.Comment}</p>
-                </li>
-            ))}
-        </ul>
-    </div> */
-
-
+    </div>
   );
 }
 
