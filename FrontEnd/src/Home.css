@@ -7,44 +7,7 @@
   }
   
   /* Styles pour le header */
-  header {
-    background-color: #7986c7;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo a {
-    font-size: 1.8em; /* Taille de police augmentée */
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    display: flex;
-  }
-  
-  nav ul li {
-    margin-right: 20px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    font-size: 1em; /* Taille de police augmentée */
-  }
-  
-  /* Styles pour la section hero */
-  .hero {
-    background-color: #f8f9fa;
-    padding: 100px 20px;
-    text-align: center;
-  }
-  
+ 
   .hero-content h1 {
     font-size: 3em; /* Taille de police augmentée */
     color: #333;
