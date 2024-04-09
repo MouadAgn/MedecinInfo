@@ -35,6 +35,9 @@ class Appointment
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Comment = null;
 
+    #[ORM\ManyToOne(inversedBy: 'appointment')]
+    private ?Patient $patient = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,6 +75,18 @@ class Appointment
     public function setComment(?string $Comment): static
     {
         $this->Comment = $Comment;
+
+        return $this;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?Patient $patient): static
+    {
+        $this->patient = $patient;
 
         return $this;
     }
