@@ -1,4 +1,5 @@
 import Login from './Login'
+import Planning from './Planning'
 import { Routes, Route} from "react-router-dom"
 import Home from './Home'
 
@@ -9,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}> </Route>
           <Route path="/login" element={<Login/>}></Route>
+          <Route path="/planning" element={<Planning/>}></Route>
         </Routes>
     </div>
   )
