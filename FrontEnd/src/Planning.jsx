@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Planning.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import Header from './Header.jsx';
 
