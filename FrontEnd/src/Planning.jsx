@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Planning.css';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Header from './Header.jsx';
 
@@ -38,7 +38,7 @@ function Planning() {
         <tbody>
             {data && data.map(appointment => (
                 <tr key={appointment['@id']}>
-                    <td>Nom</td>
+                    <td>{appointment.patient}</td>
                     <td>{appointment.Date}</td>
                     <td>{appointment.Time}</td>
                     <td>{appointment.Comment}</td>
