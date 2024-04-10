@@ -1,0 +1,56 @@
+.container {
+    width: 80%;
+    margin: 50px auto;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+  }
+  
+  .profile-info {
+    border: 2px solid rgb(140, 140, 140);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .profile-info p {
+    margin: 10px 0;
+  }
+  
+  .profile-info button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .profile-info button:hover {
+    background-color: #45a049;
+  }
+  
+  .change-password-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .change-password-form label {
+    margin-bottom: 5px;
+  }
+  
+  .change-password-form input {
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    border: 1px solid rgb(160, 160, 160);
+    border-radius: 4px;
+  }
+  
+  .change-password-form button {
+    padding: 5px 10px;
+  }
+  
+  .error-message {
+    color: red;
+  }
+  
+  
