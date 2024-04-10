@@ -35,7 +35,7 @@ function Planning() {
         <tbody>
             {data && data.map(appointment => (
                 <tr key={appointment['@id']}>
-                    <td>Nom</td>
+                    <td>{appointment.nom}</td>
                     <td>{appointment.Date}</td>
                     <td>{appointment.Time}</td>
                     <td>{appointment.Comment}</td>
