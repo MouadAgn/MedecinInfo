@@ -38,7 +38,7 @@ function Planning() {
         <tbody>
             {data && data.map(appointment => (
                 <tr key={appointment.id}>
-                    <td><Link to={`/patient/${appointment.id}/appointments`}> {appointment.patient_name} </Link></td>
+                    <td><Link to={`/appointments/patient/${appointment.id}`}> {appointment.patient_name} </Link></td>
                     <td>{appointment.date}</td>
                     <td>{appointment.time}</td>
                     <td>{appointment.comment}</td>

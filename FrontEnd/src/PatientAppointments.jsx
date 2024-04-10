@@ -9,7 +9,7 @@ function PatientAppointments() {
     useEffect(() => {
         const fetchPatientData = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/patient/${id}/appointments`);
+                const response = await fetch(`http://127.0.0.1:8000/api/appointments/patient/${id}`);
                 const data = await response.json();
                 setData(data);
             }
