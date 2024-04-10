@@ -37,11 +37,11 @@ function Planning() {
         </thead>
         <tbody>
             {data && data.map(appointment => (
-                <tr key={appointment['@id']}>
-                    <td>{appointment.patient}</td>
-                    <td>{appointment.Date}</td>
-                    <td>{appointment.Time}</td>
-                    <td>{appointment.Comment}</td>
+                <tr key={appointment.id}>
+                    <td><Link to={`/patient/${appointment.id}/appointments`}> {appointment.patient_name} </Link></td>
+                    <td>{appointment.date}</td>
+                    <td>{appointment.time}</td>
+                    <td>{appointment.comment}</td>
                 </tr>
             ))}
         </tbody>
