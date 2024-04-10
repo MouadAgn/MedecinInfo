@@ -5,7 +5,7 @@ controllers:
     type: attribute
 
 # config/routes.yaml
-appointment_routes:
-    resource: ../src/Controller/AppointmentController.php
-    type: annotation
-    prefix: /api
+# appointment_routes:
+#     resource: ../src/Controller/AppointmentController.php
+#     type: annotation
+#     prefix: /api

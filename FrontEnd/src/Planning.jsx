@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Planning.css';
+import { Link } from 'react-router-dom';
 
 import Header from './Header.jsx';
 
@@ -7,21 +8,19 @@ function Planning() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/appointments')
-            .then(response => response.json())
-            .then(data => {
-                const formattedAppointments = data['hydra:member'].map(appointment => {
-                    const date = new Date(appointment.Date);
-                    const time = new Date(appointment.Time);
-                    return {
-                        ...appointment,
-                        Date: date.toISOString().slice(0, 10),
-                        Time: time.toISOString().slice(11, 19)
-                    };
-                });
-                setData(formattedAppointments);
-            });
-    }, []);
+        const fetchAppointments = async () => {
+            try {
+              const response = await fetch('http://127.0.0.1:8000/api/appointments');
+              const data = await response.json();
+              setData(data), console.log(data);
+            } catch (error) {
+              console.error('Erreur lors de la récupération des données', error);
+              // <Link to="/error" />
+            }
+          };
+      
+          fetchAppointments();
+        }, []);
 
   return (
     <div>
@@ -38,11 +37,11 @@ function Planning() {
         </thead>
         <tbody>
             {data && data.map(appointment => (
-                <tr key={appointment['@id']}>
-                    <td>{appointment.patient}</td>
-                    <td>{appointment.Date}</td>
-                    <td>{appointment.Time}</td>
-                    <td>{appointment.Comment}</td>
+                <tr key={appointment.id}>
+                    <td><Link to={`/patient/${appointment.id}/appointments`}> {appointment.patient_name} </Link></td>
+                    <td>{appointment.date}</td>
+                    <td>{appointment.time}</td>
+                    <td>{appointment.comment}</td>
                 </tr>
             ))}
         </tbody>

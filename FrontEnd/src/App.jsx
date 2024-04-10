@@ -1,7 +1,9 @@
+import { Routes, Route} from "react-router-dom"
+
 import Login from './Login'
 import Planning from './Planning'
-import { Routes, Route} from "react-router-dom"
 import Home from './Home'
+import PatientAppointments from './PatientAppointments'
 
 function App() {
  
@@ -11,6 +13,7 @@ function App() {
           <Route path="/" element={<Home />}> </Route>
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/planning" element={<Planning/>}></Route>
+          <Route path="/patient/:id/appointments" element={<PatientAppointments/>}></Route>
         </Routes>
     </div>
   )
