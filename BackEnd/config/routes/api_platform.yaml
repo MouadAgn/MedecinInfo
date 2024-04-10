@@ -2,3 +2,13 @@ api_platform:
     resource: .
     type: api_platform
     prefix: /api
+
+get_patient_and_appointment:
+    path: '/api/patient/{id}/appointments'
+    controller: App\Controller\AppointmentController::getPatientWithAppointments
+    methods: ['GET']
+
+get_appointment:
+    path: '/api/appointments'
+    controller: App\Controller\AppointmentController::getAllAppointments
+    methods: ['GET']

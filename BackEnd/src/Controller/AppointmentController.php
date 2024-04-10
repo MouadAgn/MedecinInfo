@@ -1,46 +1,74 @@
 <?php
-// Controller non utiliser pour le moment
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+
+use App\Entity\Patient;
+
 use App\Entity\Appointment;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-// use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
 
 class AppointmentController extends AbstractController
 {
-    private $entityManager;
+    private $em;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->entityManager = $entityManager;
+        $this->em = $em;
     }
     
     /**
-     * @Route("/appointment", name="appointment", methods={"GET"})
+     * @Route("/api/patients/{id}/appointments", name="get_patient_with_appointments", methods={"GET"})
      */
-    /* public function getAppointment(): JsonResponse
+    public function getPatientWithAppointments(Patient $patient): Response
     {
-        $appointments = $this->entityManager->getRepository(Appointment::class)->findAll();
+        $appointments = $patient->getAppointment();
 
-        return new JsonResponse($appointments, 200, [], true);
-    } */
+        $data = [
+            'patient' => [
+                'id' => $patient->getId(),
+                'name' => $patient->getName(),
+                'dob' => $patient->getDob()->format('Y-m-d')
+            ],
+            'appointments' => [],
+        ];
+
+        foreach ($appointments as $appointment) {
+            $data['appointments'] = [
+                'id' => $appointment->getId(),
+                'date' => $appointment->getDate()->format('Y-m-d'),
+                'time' => $appointment->getTime()->format('H:i:s'),
+                'comment' => $appointment->getComment(),
+            ];
+        }
+
+        return new JsonResponse($data);
+    }
 
 
-    /**
-     * @Route("/appointment", name="get_appointment", methods={"GET"})
+     /**
+     * @Route("/planning", name="planning")
      */
-    public function getOnePatient(Request $request): Response
+    public function getAllAppointments(): Response
     {
-        $appointment = $this->entityManager->getRepository(Appointment::class)->find($request->get('id'));
+        $appointments = $this->em->getRepository(Appointment::class)->findAll();
 
-        return $this->render('appointment/index.html.twig', [
-            'appointment' => $appointment,
-        ]);
+        $data = [];
+        foreach ($appointments as $appointment) {
+            $data[] = [
+                'id' => $appointment->getPatient()->getId(),
+                'date' => $appointment->getDate()->format('Y-m-d'),
+                'time' => $appointment->getTime()->format('H:i:s'),
+                'patient_name' => $appointment->getPatient()->getName(),
+                'comment' => $appointment->getComment(),
+            ];
+        }
+
+        return new JsonResponse($data);
     }
 }
