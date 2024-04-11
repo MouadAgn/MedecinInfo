@@ -12,3 +12,13 @@ get_appointment:
     path: '/api/appointments'
     controller: App\Controller\AppointmentController::getAllAppointments
     methods: ['GET']
+
+get_user:
+    path: '/api/users'
+    controller: App\Controller\ProfilController::getuserdataProfil
+    methods: ['GET']
+
+post_login:
+    path: '/api/login'
+    controller: App\Controller\LoginController::login
+    methods: ['POST']
