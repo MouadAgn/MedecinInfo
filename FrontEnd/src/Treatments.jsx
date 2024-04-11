@@ -44,6 +44,23 @@ function Treatments() {
         }
     };
 
+    // const UpdateTreatment = async (patientid, treatmentid) => {
+    //     try {
+    //         const response = await fetch(`http://127.0.0.1:8000/api/treatments/update/${treatmentid}/patient/${patientid}`, {
+    //         method: 'PUT'
+    //         });
+
+    //         if (response.ok) {
+    //             console.log('Traitement modifié');
+    //             const newData = data.treatments.filter(treatment => treatment.id !== treatmentid);
+    //             setData({ ...data, treatments: newData });
+    //         } else {
+    //             console.error('Erreur lors de la modification du traitement:', await response.json());
+    //         }
+    //     } catch (error) {
+    //         console.error('Erreur lors de la modification du traitement', error);
+    //     }
+    // }
     return (
         <div>
             <div>
@@ -71,7 +88,7 @@ function Treatments() {
                             <td>{treatment.dateend}</td>
                             <td>{treatment.dosage}</td>
                             <td>{treatment.comment}</td>
-                            <td><button>Modifier</button></td>
+                            <td><button><Link to={`/treatments/update/${treatment.id}/patient/${data.patient.id}`}>Modifier</Link></button></td>
                             <td><button onClick={() => DeleteTreatment(data.patient.id, treatment.id)}>Supprimer</button></td>
                         </tr>
                     ))}

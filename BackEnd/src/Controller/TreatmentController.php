@@ -92,7 +92,7 @@ class TreatmentController extends AbstractController
     }
 
     /**
-     * @Route("/api/treatments/delete/{id}", name="delete_treatment", methods={"DELETE"})
+     * @Route("/api/treatments/delete/{treatmentid}/patient/{patientid}", name="delete_treatment", methods={"DELETE"})
      */
 
     public function deleteTreatment(Request $request): JsonResponse
@@ -110,5 +110,51 @@ class TreatmentController extends AbstractController
         $this->em->flush();
 
         return new JsonResponse(['response' => 'Traitement supprimé!'], 200);
+    }
+
+    /**
+     * @Route("/api/treatments/update/{treatmentid}/patient/{patientid}", name="update_treatment", methods={"PUT"})
+     */
+    public function updateTreatment(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $treatmentid = $request->get('treatmentid');
+        // $patientid = $request->get('patientid');
+
+        $treatment = $this->em->getRepository(Treatment::class)->find($treatmentid);
+
+        if (!$treatment) {
+            return new JsonResponse(['error' => 'Traitement non trouvé'], 404);
+        }
+
+        $treatment->setName($data['name']);
+        $treatment->setDateStart(new \DateTime($data['datestart']));
+        $treatment->setDateEnd(new \DateTime($data['dateend']));
+        $treatment->setDosage($data['dosage']);
+        $treatment->setComment($data['comment']);
+
+        $this->em->persist($treatment);
+        $this->em->flush();
+
+        return new JsonResponse(['response' => 'Traitement modifié!'], 200);
+    }
+
+    /**
+     * @Route("/api/treatments/{id}", name="get_one_treatment", methods={"GET"})
+     */
+
+    public function getOneTreatment(Treatment $treatment): JsonResponse
+    {
+        $data = [
+            'id' => $treatment->getId(),
+            'name' => $treatment->getName(),
+            'datestart' => $treatment->getDateStart()->format('Y-m-d'),
+            'dateend' => $treatment->getDateEnd()->format('Y-m-d'),
+            'dosage' => $treatment->getDosage(),
+            'comment' => $treatment->getComment(),
+        ];
+
+        return new JsonResponse($data);
     }
 }
