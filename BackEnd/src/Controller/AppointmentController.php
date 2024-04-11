@@ -23,7 +23,7 @@ class AppointmentController extends AbstractController
     }
     
     /**
-     * @Route("/api/patients/{id}/appointments", name="get_patient_with_appointments", methods={"GET"})
+     * @Route("/api/appointments/patient/{id}", name="get_patient_with_appointments", methods={"GET"})
      */
     public function getPatientWithAppointments(Patient $patient): Response
     {

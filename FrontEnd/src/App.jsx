@@ -4,6 +4,8 @@ import Login from './Login'
 import Planning from './Planning'
 import Home from './Home'
 import PatientAppointments from './PatientAppointments'
+import Treatments from './Treatments'
+import TreatmentsForm from './TreatmentsForm'
 
 function App() {
  
@@ -14,6 +16,9 @@ function App() {
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/planning" element={<Planning/>}></Route>
           <Route path="/appointments/patient/:id" element={<PatientAppointments/>}></Route>
+          <Route path="/treatments/patient/:id" element={<Treatments/>}></Route>
+          <Route path="/treatments/add/patient/:id" element={<TreatmentsForm/>}></Route>
+          <Route path="/treatments/delete/:treatmentid/patient/:patientid" element={<Treatments/>}></Route>
         </Routes>
     </div>
   )
