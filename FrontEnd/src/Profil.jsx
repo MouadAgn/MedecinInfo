@@ -20,9 +20,10 @@ class Profile extends Component {
   fetchUserData = async () => {
     try {
       // Exemple de requête pour récupérer les données utilisateur
-      const response = await fetch("http://127.0.0.1:8000/api/users/${id}");
+      const { id } = this.props;
+      const response = await fetch(`http://127.0.0.1:8000/api/users/${id}`);
       const userData = await response.json();
-      this.setState({ userData });
+      this.setState({ userData }),console.log(userData);
     } catch (error) {
       console.error("Erreur lors de la récupération des données", error);
     }
@@ -44,7 +45,7 @@ class Profile extends Component {
     e.preventDefault();
     try {
       // Exemple de requête pour mettre à jour le mot de passe
-      await fetch("http://example.com/api/users/${id}", {
+      await fetch(`http://127.0.0.1:8000/api/users/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
