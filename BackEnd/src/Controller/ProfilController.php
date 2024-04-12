@@ -1,49 +1,49 @@
 <?php
 
-namespace App\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
+namespace App\Controller\Api;
 
 use App\Entity\User;
-
+use App\Repository\UserRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/api/profil", name="api_profil")
+ */
 class ProfilController extends AbstractController
 {
-    private $security;
+    private $userRepository;
 
-    public function __construct(Security $security)
+    public function __construct(UserRepository $userRepository)
     {
-        $this->security = $security;
+        $this->userRepository = $userRepository;
     }
 
     /**
-     * @Route("/api/users", name="getuserdataProfil", methods={"GET"})
+     * @Route("/{id}", name="api_profil_show", methods=["GET"])
      */
-    public function getuserdataProfil(User $users): JsonResponse
+    public function getuserdataProfil(int $id): JsonResponse
     {
-        // Obtenez l'utilisateur connecté
-        $user = $this->security->getUser();
+        $user = $this->userRepository->findOneBy(['id' => $id]);
 
-        // Vérifiez si un utilisateur est connecté
+        // Check if user exists
         if (!$user) {
-            return new JsonResponse(['message' => 'Utilisateur non connecté'], Response::HTTP_UNAUTHORIZED);
+            throw new NotFoundHttpException('Utilisateur introuvable');
         }
 
-        // Construisez les données utilisateur à renvoyer
+        // Build user data to return
         $userData = [
             'patient' => [
-                'id' => $users->getId(),
-                'Nom' => $users->getNom(),
-                'Email' => $users->getEmail(),
-                // Ne renvoyez jamais le mot de passe dans la réponse !
+                'id' => $user->getId(),
+                'Nom' => $user->getNom(),
+                'Email' => $user->getEmail(),
+                // Never return password in the response!
                 // 'Password'=> $user->getPassword()
             ]
         ];
 
         return new JsonResponse($userData);
     }
-} 
+}
