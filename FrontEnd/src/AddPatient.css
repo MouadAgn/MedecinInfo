@@ -48,3 +48,15 @@
 .add-patient-container button:hover {
     background-color: #0056b3;
 }
+
+.message-container {
+    margin-top: 10px;
+}
+
+.success-message {
+    color: green;
+}
+
+.error-message {
+    color: red;
+}

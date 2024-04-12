@@ -7,7 +7,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -26,7 +26,7 @@ export default function Login() {
       if (response.ok) {
         localStorage.setItem('user', JSON.stringify(data.user));
         // Redirigez l'utilisateur vers une autre page (par exemple, page d'accueil)
-        window.location.href = '/home'; // Remplacez '/home' par l'URL de la page souhaitée
+        window.location.href = '/'; // Remplacez '/home' par l'URL de la page souhaitée
       } else {
         console.log("testr");
         setErrorMessage(data.message);

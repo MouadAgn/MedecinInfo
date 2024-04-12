@@ -31,7 +31,13 @@ function AddPatient() {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
-                setMessage('Patient ajouté avec succès'); // Afficher un message de succès
+                setMessage('Patient ajouté avec succès !'); // Afficher un message de succès
+                setFormData({ // Vider le formulaire après l'ajout du patient
+                    name: '',
+                    dob: '',
+                    gender: '',
+                    phone: ''
+                });
                 // Vous pouvez également rediriger l'utilisateur vers une autre page ici
             } else {
                 console.error('Erreur lors de l\'ajout du patient:', response.status);
@@ -59,8 +65,8 @@ function AddPatient() {
 
                         <label>Genre :</label>
                         <select name="gender" value={formData.gender} onChange={handleChange}>
-                            <option value={1}>Homme</option>
-                            <option value={0}>Femme</option>
+                            <option value={0}>Homme</option>
+                            <option value={1}>Femme</option>
                         </select>
 
                         <label>Téléphone :</label>
@@ -68,9 +74,12 @@ function AddPatient() {
 
                         <button type="submit" disabled={loading}>{loading ? 'Chargement...' : 'Ajouter'}</button>
                     </form>
-                    {message && <p style={{ color: message.startsWith('Erreur') ? 'red' : 'green' }}>{message}</p>}
+                    <div className="message-container">
+                        {message && <p className={message.startsWith('Erreur') ? 'error-message' : 'success-message'}>{message}</p>}
+                    </div>
                 </div>
             </div>
+
             
             <Footer />
         </div>

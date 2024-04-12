@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import './PatientAppointment.css';
 
 function PatientAppointments() {
     const [data, setData] = useState([]);
@@ -31,12 +32,14 @@ function PatientAppointments() {
       }
       else{
         return (
-            <div className="patient-appointments-container">
+            <div className="patient-container">
+                
                 <Header />
-                <h2 className="tit">Informations du patient</h2>
-                <p className="patient-info">Nom : {data.patient.name}</p>
+                <br></br><br></br><br></br>
+                <h2 className="tit">Informations du patient</h2><br></br>
+                <p className="patient-info"><b>Nom : </b>  {data.patient.name}</p>
                 <table className="appointments-table">
-                    <caption>Rendez-vous</caption>
+                    
                     <thead>
                         <tr>
                             <th>Date</th>
@@ -52,7 +55,7 @@ function PatientAppointments() {
                         </tr>
                     </tbody>
                 </table>
-                <Link to="/planning" className="back-link">Retour au planning</Link>
+                <Link to="/planning " className="add-patient-button">Retour au planning</Link>
                 <Footer />
             </div>
         );
