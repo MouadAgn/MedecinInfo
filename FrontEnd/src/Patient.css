@@ -76,20 +76,5 @@ tfoot td {
 h1 {
     margin-top: 50px; /* Ajouter un espacement en haut du titre */
 }
-.add-patient-button {
-    display: inline-block; /* Permettre au bouton de rester sur la même ligne */
-    margin-top: 20px; /* Ajouter un espacement en haut du bouton */
-    padding: 10px 20px; /* Ajouter un rembourrage pour améliorer l'apparence */
-    background-color: #007bff; /* Couleur de fond du bouton */
-    color: #fff; /* Couleur du texte */
-    text-decoration: none; /* Supprimer les soulignements par défaut */
-    border-radius: 5px; /* Ajouter des coins arrondis */
-    transition: background-color 0.3s ease; /* Animation de transition de couleur de fond */
-}
-
-.add-patient-button:hover {
-    background-color: #0056b3; /* Couleur de fond du bouton au survol */
-}
-
 
 /* Style du lien */
