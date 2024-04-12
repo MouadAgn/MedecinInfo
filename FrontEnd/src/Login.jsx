@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Header from './Header.jsx';
 import './Login.css';
-import Footer from './Footer.jsx';
+
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -24,7 +24,7 @@ export default function Login() {
       const data = await response.json();
       console.log(data);
       if (response.ok) {
-        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('id', JSON.stringify(data.id));
         // Redirigez l'utilisateur vers une autre page (par exemple, page d'accueil)
         window.location.href = '/'; // Remplacez '/home' par l'URL de la page souhaitée
       } else {
@@ -68,7 +68,6 @@ export default function Login() {
           <button type="submit">Se connecter</button>
         </form>
       </div>
-      <Footer />
     </div>
   );
 }
