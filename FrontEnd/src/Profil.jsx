@@ -1,27 +1,24 @@
-// Profile.jsx
+// Profil.jsx
 
 import { useEffect, useState } from 'react';
 import Header from './Header.jsx';
+import './Profil.css';
 
 function Profil() {
     const [data, setUserData] = useState(null);
-    // localStorage.setItem('id', 1);
-    // Retrieve ID from local storage
     const storedId = localStorage.getItem('id');
-    const initialId = storedId ? parseInt(storedId) : null; // Convert to number
+    const initialId = storedId ? parseInt(storedId) : null;
 
-    // useEffect to fetch user data based on ID
     useEffect(() => {
         const fetchUserData = async () => {
             if (!initialId) {
-                console.error('ID utilisateur manquant dans le local storage');
+                console.error('ID utilisateur manquant dans le stockage local');
                 return;
             }
             try {
                 const response = await fetch(`http://127.0.0.1:8000/api/users/${initialId}`);
                 const data = await response.json();
-                setUserData(data)
-                // console.log(data.patient.Nom);
+                setUserData(data);
             } catch (error) {
                 console.error('Erreur lors de la récupération des données', error);
             }
@@ -30,19 +27,21 @@ function Profil() {
         fetchUserData();
     }, [initialId]); 
 
-
     return (
         <div>
             <Header />
-            <h2>Profil Utilisateur</h2>
+        <div className="profil-container">
+            <h2 className="profil-title">Profil Utilisateur</h2>
             {data ? (
                 <div>
-                    <p>Nom : {data.patient.Nom}</p>
-                    <p>Email : {data.patient.Email}</p>
+                    <p className="profil-info"><b>Nom : </b>{data.patient.Nom}</p>
+                    <p className="profil-info"><b>Email : </b> {data.patient.Email}</p>
                 </div>
             ) : (
-                <div>Loading...</div>
+                <div className="loading-message">Chargement...</div>
             )}
+        </div>
+
         </div>
     );
 }
