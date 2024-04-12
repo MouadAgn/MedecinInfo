@@ -24,11 +24,8 @@ class LoginController extends AbstractController
     public function post_login(Request $request): Response
     {
         $data = json_decode($request->getContent(), true);
-            // Debugging: Dump $data to check its contents
-        var_dump($data);
-        die(); // Stop execution to inspect $data
-        $email = $data['Email'];
-        $password = $data['Password'];
+        $email = $data['email'];
+        $password = $data['password'];
 
         $userRepository = $this->entityManager->getRepository(User::class);
         $user = $userRepository->findOneBy(['Email' => $email]);
