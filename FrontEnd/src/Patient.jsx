@@ -7,7 +7,7 @@ import Footer from './Footer.jsx';
 function Patient() {
     const [loading, setLoading] = useState(true); // Ajout de l'état pour le chargement
     const [appointments, setAppointments] = useState([]);
-    const [, setSelectedPatient] = useState(null); // État pour stocker le patient sélectionné pour la suppression
+   // État pour stocker le patient sélectionné pour la suppression
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,14 +35,7 @@ function Patient() {
         fetchData();
     }, []);
 
-    const handleDelete = (patientId) => {
-        setSelectedPatient(patientId); // Stocker l'ID du patient à supprimer dans l'état
-        // Afficher une boîte de dialogue de confirmation ici
-        if (window.confirm('Êtes-vous sûr de vouloir supprimer ce patient ?')) {
-            // Si l'utilisateur confirme, vous pouvez implémenter la logique de suppression ici
-            console.log('Suppression du patient avec ID :', patientId);
-        }
-    };
+   
 
     return (
         <div className="patient-container">
@@ -77,10 +70,7 @@ function Patient() {
                                 <td>{patient.appointments.patient.phone}</td>
                                 <td>{patient.appointments.appointments.date ? `${patient.appointments.appointments.date} à ${patient.appointments.appointments.time}` : 'Pas de RDV'}</td>
 
-                                <td>
-                                    <button style={{backgroundColor: 'blue'}}>Modifier</button>&nbsp;&nbsp;
-                                    <button style={{backgroundColor: 'red'}} onClick={() => handleDelete(patient.appointments.patient.id)}>Supprimer</button>
-                                </td>
+                               
                             </tr>
                         ))}
                     </tbody>
