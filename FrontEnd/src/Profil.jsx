@@ -17,6 +17,7 @@ function Profil() {
                 console.error('ID utilisateur manquant dans le local storage');
                 return;
             }
+
             try {
                 const response = await fetch(`http://127.0.0.1:8000/api/users/${initialId}`);
                 const data = await response.json();
@@ -29,21 +30,79 @@ function Profil() {
         fetchUserData();
     }, [initialId]); 
 
+    handleChange = (e) => {
+            this.setState({ [e.target.name]: e.target.value });
+          };
+        
+          handleEditPassword = () => {
+            this.setState((prevState) => ({
+              isEditingPassword: !prevState.isEditingPassword,
+              newPassword: "",
+              errorMessage: "",
+            }));
+          };
+        
+          handleSubmitPassword = async (e) => {
+            e.preventDefault();
+            try {
+              // Exemple de requête pour mettre à jour le mot de passe
+              await fetch(`http://127.0.0.1:8000/api/users/${id}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ newPassword: this.state.newPassword }),
+              });
+              // Mise à jour réussie, réinitialiser le champ du mot de passe et les messages d'erreur
+              this.setState({
+                newPassword: "",
+                errorMessage: "",
+                isEditingPassword: false,
+              });
+            } catch (error) {
+              // Gérer les erreurs
+              this.setState({ errorMessage: "Erreur lors de la mise à jour du mot de passe" });
+            }
+          };
+        
+        //   render() {
+        //     const { userData, newPassword, isEditingPassword, errorMessage } = this.state;
+        //   }
 
-    return (
-        <div>
+     return (
+          <div>
             <Header />
             <h2>Profil Utilisateur</h2>
             {userData ? (
-                <div>
-                    <p>Nom : {userData.Nom}</p>
-                    <p>Email : {userData.Email}</p>
-                </div>
+              <div>
+                <p>Nom : {userData.name}</p>
+                <p>Email : {userData.email}</p>
+                {isEditingPassword ? (
+                  <form onSubmit={this.handleSubmitPassword}>
+                    <label htmlFor="newPassword">Nouveau mot de passe :</label>
+                    <input
+                      type="password"
+                      id="newPassword"
+                      name="newPassword"
+                      value={newPassword}
+                      onChange={this.handleChange}
+                      required
+                    />
+                    <button type="submit">Enregistrer</button>
+                    <button type="button" onClick={this.handleEditPassword}>
+                      Annuler
+                    </button>
+                    {errorMessage && <p>{errorMessage}</p>}
+                  </form>
+                ) : (
+                  <button onClick={this.handleEditPassword}>Modifier le mot de passe</button>
+                )}
+              </div>
             ) : (
-                <div>Loading...</div>
+              <div>Loading...</div>
             )}
-        </div>
-    );
+          </div>
+        );
 }
 
 export default Profil;

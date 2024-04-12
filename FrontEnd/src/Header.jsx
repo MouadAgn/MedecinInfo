@@ -14,7 +14,7 @@ export default function Header() {
             <li><Link to="/planning">Planning</Link></li>
             <li><Link to="/traitements">Traitements</Link></li>
             <li><Link to="/login">Login</Link></li>
-            <li><Link to="/users">Profil</Link></li>
+            <li><Link to="/profil">Profil</Link></li>
           </ul>
         </nav>
       </header>

@@ -28,12 +28,10 @@ class ProfilController extends AbstractController
     {
         $user = $this->userRepository->findOneBy(['id' => $id]);
 
-        // Check if user exists
         if (!$user) {
             throw new NotFoundHttpException('Utilisateur introuvable');
         }
 
-        // Build user data to return
         $userData = [
             'patient' => [
                 'id' => $user->getId(),
