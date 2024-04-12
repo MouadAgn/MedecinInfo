@@ -42,7 +42,7 @@ class AppointmentController extends AbstractController
         ];
 
         foreach ($appointments as $appointment) {
-            $data['appointments'][] = [
+            $data['appointments'] = [
                 'id' => $appointment->getId(),
                 'date' => $appointment->getDate()->format('Y-m-d'),
                 'time' => $appointment->getTime()->format('H:i:s'),
