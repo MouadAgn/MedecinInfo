@@ -3,7 +3,7 @@ api_platform:
     type: api_platform
     prefix: /api
 
-<<<<<<<<< Temporary merge branch 1
+
 get_patient_and_appointment:
     path: '/api/appointments/patient/{id}'
     controller: App\Controller\AppointmentController::getPatientWithAppointments
@@ -14,22 +14,17 @@ get_appointment:
     controller: App\Controller\AppointmentController::getAllAppointments
     methods: ['GET']
 
-<<<<<<<<< Temporary merge branch 1
 get_patient:
     path: '/api/patients'
     controller: App\Controller\PatientController::getAllPatients  
     methods: ['GET']
 
-# add_patient:
-#     path: '/api/patients/add'
-#     controller: App\Controller\AddPatientController::addPatient
-#     methods: ['POST']
+add_patient:
+    path: '/api/patients/add'
+    controller: App\Controller\AddPatientController::addPatient
+    methods: ['POST']
 
-delete_patient:
-    path: 'api/patients/{id}'
-    controller: App\Controller\DeletePatientController::deletePatient
-    methods: ['DELETE']
-=========
+
 get_user:
     path: '/api/users/{id}'
     controller: App\Controller\ProfilController::getuserdataProfil

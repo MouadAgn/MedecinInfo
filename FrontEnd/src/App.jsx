@@ -2,7 +2,7 @@ import Login from './Login'
 import Planning from './Planning'
 import Home from './Home'
 import Patient from './Patient'
-// import AddPatient from './AddPatient'
+import AddPatient from './AddPatient'
 import PatientAppointments from './PatientAppointments'
 import Treatments from './Treatments'
 import TreatmentsForm from './TreatmentsForm'
@@ -24,7 +24,7 @@ function App() {
           <Route path="/treatments/delete/:treatmentid/patient/:patientid" element={<Treatments/>}></Route>
           <Route path="/treatments/update/:treatmentid/patient/:patientid" element={<TreatmentsUpdate/>}></Route>
           <Route path="/patients" element={<Patient/>}></Route>
-          {/* <Route path="/patients/add" element={<AddPatient/>}></Route> */}
+          <Route path="/patients/add" element={<AddPatient/>}></Route>
           <Route path="/profil" element={<Profil/>}></Route>
         </Routes>
     </div>  

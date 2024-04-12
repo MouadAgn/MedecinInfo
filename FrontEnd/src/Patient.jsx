@@ -7,7 +7,7 @@ import Footer from './Footer.jsx';
 function Patient() {
     const [loading, setLoading] = useState(true); // Ajout de l'état pour le chargement
     const [appointments, setAppointments] = useState([]);
-// État pour stocker le patient sélectionné pour la suppression
+   // État pour stocker le patient sélectionné pour la suppression
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +35,7 @@ function Patient() {
         fetchData();
     }, []);
 
-
+   
 
     return (
         <div className="patient-container">
@@ -69,17 +69,14 @@ function Patient() {
                                 <td>{patient.appointments.patient.gender === 1 ? 'Homme' : 'Femme'}</td>
                                 <td>{patient.appointments.patient.phone}</td>
                                 <td>{patient.appointments.appointments.date ? `${patient.appointments.appointments.date} à ${patient.appointments.appointments.time}` : 'Pas de RDV'}</td>
-                                <td>
-                                    <button style={{backgroundColor: 'blue'}}><Link to={`/treatments/patient/${patient.appointments.patient.id}`}>Traitements</Link></button>&nbsp;&nbsp;
-                                    <button style={{backgroundColor: 'red'}}><Link to={`/appointments/patient/${patient.appointments.patient.id}`}>Rendez-vous</Link></button>
-                                </td>
+
+                               
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <Link to="/patients/add " className="add-patient-button">Ajouter un patient</Link>
-                &nbsp;<Link to="/planning" className="add-patient-button">Retour au planning</Link>
-                
+                <Link to="/add-patient" className="add-patient-button">Ajouter un patient</Link>
+                &nbsp;<Link to="/planning" className="patient-link">Retour au planning</Link>
                 </>
             )}
             <Footer />
