@@ -19,22 +19,20 @@ class LoginController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login", methods={"POST"})
+     * @Route("/api/login", name="post_login", methods={"POST"})
      */
-    public function login(Request $request): Response
+    public function post_login(Request $request): Response
     {
-        // Récupérer les données de la requête
         $data = json_decode($request->getContent(), true);
-
-        // Récupérer l'email et le mot de passe
+            // Debugging: Dump $data to check its contents
+        var_dump($data);
+        die(); // Stop execution to inspect $data
         $email = $data['Email'];
         $password = $data['Password'];
 
-        // Recherche de l'utilisateur par son email
         $userRepository = $this->entityManager->getRepository(User::class);
         $user = $userRepository->findOneBy(['Email' => $email]);
 
-        // Vérifier si l'utilisateur existe
         if (!$user) {
             return new JsonResponse(['message' => 'Utilisateur non trouvé'], Response::HTTP_NOT_FOUND);
         }

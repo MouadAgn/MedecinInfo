@@ -20,5 +20,5 @@ get_user:
 
 post_login:
     path: '/api/login'
-    controller: App\Controller\LoginController::login
+    controller: App\Controller\LoginController::post_login
     methods: ['POST']
