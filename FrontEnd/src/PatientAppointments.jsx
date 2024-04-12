@@ -49,13 +49,13 @@ function PatientAppointments() {
                         </tr>
                     </thead>
                     <tbody>
-                        {data && data.appointments.map(appointment => (
-                        <tr key={appointment.id}>
-                            <td>{appointment.date}</td>
-                            <td>{appointment.time}</td>
-                            <td>{appointment.comment}</td>
+                        {/* {data && data.appointments.map(appointment => ( */}
+                        <tr key={data.appointments.id}>
+                            <td>{data.appointments.date}</td>
+                            <td>{data.appointments.time}</td>
+                            <td>{data.appointments.comment}</td>
                         </tr>
-                        ))}
+                        {/* ))} */}
                     </tbody>
                 </table>
                 <Link to="/planning " className="add-patient-button">Retour au planning</Link>
