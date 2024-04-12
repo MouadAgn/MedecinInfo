@@ -30,18 +30,20 @@ function Profil() {
     return (
         <div>
             <Header />
-        <div className="profil-container">
-            <h2 className="profil-title">Profil Utilisateur</h2>
-            {data ? (
-                <div>
-                    <p className="profil-info"><b>Nom : </b>{data.patient.Nom}</p>
-                    <p className="profil-info"><b>Email : </b> {data.patient.Email}</p>
-                </div>
-            ) : (
-                <div className="loading-message">Chargement...</div>
-            )}
-        </div>
-
+            <div className="profil-container">
+                <h2 className="profil-title">Profil Utilisateur</h2><br></br>
+                {data ? (
+                    <div>
+                        <p className="profil-info"><b>Nom : </b>{data.patient.Nom}</p>
+                        <p className="profil-info"><b>Email : </b> {data.patient.Email}</p>
+                        
+                        <br></br>
+                        <button className="modifier-button">Modifier</button>
+                    </div>
+                ) : (
+                    <div className="loading-message">Chargement...</div>
+                )}
+            </div>
         </div>
     );
 }

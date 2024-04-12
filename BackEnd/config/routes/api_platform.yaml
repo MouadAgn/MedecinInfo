@@ -34,3 +34,28 @@ post_login:
     path: '/api/login'
     controller: App\Controller\LoginController::post_login
     methods: ['POST']
+
+get_treatment_patient:
+    path: '/api/treatments/patient/{id}'
+    controller: App\Controller\TreatmentController::getPatientWithTreatments
+    methods: ['GET']
+
+post_treatment_patient:
+    path: '/api/treatments/add/patient/{id}'
+    controller: App\Controller\TreatmentController::addTreatment
+    methods: ['POST']
+
+delete_treatment_patient:
+    path: '/api/treatments/delete/{treatmentid}/patient/{patientid}'
+    controller: App\Controller\TreatmentController::deleteTreatment
+    methods: ['DELETE']
+
+update_treatment_patient:
+    path: '/api/treatments/update/{treatmentid}/patient/{patientid}'
+    controller: App\Controller\TreatmentController::updateTreatment
+    methods: ['PUT']
+
+get_one_treatment:
+    path: '/api/treatments/{id}'
+    controller: App\Controller\TreatmentController::getOneTreatment
+    methods: ['GET']    

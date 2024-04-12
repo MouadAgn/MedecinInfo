@@ -7,7 +7,7 @@ import Footer from './Footer.jsx';
 function Patient() {
     const [loading, setLoading] = useState(true); // Ajout de l'état pour le chargement
     const [appointments, setAppointments] = useState([]);
-   // État pour stocker le patient sélectionné pour la suppression
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +35,9 @@ function Patient() {
         fetchData();
     }, []);
 
-   
+    const filteredAppointments = appointments.filter(patient => {
+        return patient.appointments.patient.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
     return (
         <div className="patient-container">
@@ -48,6 +50,12 @@ function Patient() {
                 <>
                 <br /><br />
                 <h1>Liste des patients</h1>
+                <input className="search-bar"
+                    type="text"
+                    placeholder="Rechercher par nom"
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    value={searchTerm}
+                />
                 <table>
                     <thead>
                         <tr>
@@ -61,7 +69,7 @@ function Patient() {
                         </tr>
                     </thead>
                     <tbody>
-                        {appointments.map(patient => (
+                        {filteredAppointments.map(patient => (
                             <tr key={patient.appointments.patient.id}>
                                 <td>{patient.appointments.patient.id}</td>
                                 <td>{patient.appointments.patient.name}</td>
@@ -69,14 +77,17 @@ function Patient() {
                                 <td>{patient.appointments.patient.gender === 1 ? 'Homme' : 'Femme'}</td>
                                 <td>{patient.appointments.patient.phone}</td>
                                 <td>{patient.appointments.appointments.date ? `${patient.appointments.appointments.date} à ${patient.appointments.appointments.time}` : 'Pas de RDV'}</td>
-
-                               
+                                <td>
+                                    <button style={{backgroundColor: 'blue'}}><Link to={`/treatments/patient/${patient.appointments.patient.id}`}>Traitements</Link></button>&nbsp;&nbsp;
+                                    <button style={{backgroundColor: 'red'}}><Link to={`/appointments/patient/${patient.appointments.patient.id}`}>Rendez-vous</Link></button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <Link to="/patients/add" className="add-patient-button">Ajouter un patient</Link>
-                &nbsp;<Link to="/planning" className="patient-link">Retour au planning</Link>
+                {/* Les boutons doivent être situés en dehors de la balise <table> */}
+                <Link to="/patients/add" className="add-patient-button">Ajouter un patient</Link>&nbsp;
+                <Link to="/planning" className="patient-link">Retour au planning</Link>
                 </>
             )}
             <Footer />

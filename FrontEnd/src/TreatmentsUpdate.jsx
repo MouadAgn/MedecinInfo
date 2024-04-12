@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Treatments() {
     let { treatmentid, patientid } = useParams();
 
-        const navigate = useNavigate();
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [name, setName] = useState('');
     const [datestart, setDateStart] = useState('');

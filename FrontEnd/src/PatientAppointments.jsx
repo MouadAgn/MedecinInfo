@@ -58,7 +58,7 @@ function PatientAppointments() {
                         {/* ))} */}
                     </tbody>
                 </table>
-                <Link to="/planning " className="add-patient-button">Retour au planning</Link>
+                <button><Link to="/planning " className="back-link">Retour au planning</Link></button>&nbsp;
                 <button><Link to="/patients" className="back-link">Retour au patients</Link></button>
                 <Footer />
             </div>

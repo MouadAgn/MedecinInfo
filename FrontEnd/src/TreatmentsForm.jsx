@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './TreatmentsForm.css';
+import Header from './Header';
+import Footer from './Footer';
+
 
 const TreatmentForm = () => {
   let { id } = useParams();
@@ -40,6 +44,7 @@ const TreatmentForm = () => {
   };
 
   return (
+    <div><Header /><br></br>
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name">Nom du traitement :</label>
@@ -92,6 +97,10 @@ const TreatmentForm = () => {
       </div>
       <button type="submit">Ajouter le traitement</button>
     </form>
+    <Footer />
+    
+    
+    </div>
   );
 };
 
