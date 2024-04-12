@@ -12,6 +12,7 @@ function PatientAppointments() {
                 const response = await fetch(`http://127.0.0.1:8000/api/appointments/patient/${id}`);
                 const data = await response.json();
                 setData(data);
+                console.log(data);
             }
             catch (error) {
                 console.error('Erreur lors de la récupération des données', error);

@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Patient;
-
 use App\Entity\Appointment;
-use Doctrine\ORM\EntityManagerInterface;
+
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -23,7 +23,7 @@ class AppointmentController extends AbstractController
     }
     
     /**
-     * @Route("/api/patients/{id}/appointments", name="get_patient_with_appointments", methods={"GET"})
+     * @Route("/api/appointments/patient/{id}", name="get_patient_with_appointments", methods={"GET"})
      */
     public function getPatientWithAppointments(Patient $patient): Response
     {

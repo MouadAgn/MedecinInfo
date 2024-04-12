@@ -15,7 +15,6 @@ function Planning() {
               setData(data), console.log(data);
             } catch (error) {
               console.error('Erreur lors de la récupération des données', error);
-              // <Link to="/error" />
             }
           };
       
