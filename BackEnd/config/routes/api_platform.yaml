@@ -27,6 +27,7 @@ delete_patient:
     path: 'api/patients/{id}'
     controller: App\Controller\DeletePatientController::deletePatient
     methods: ['DELETE']
+    
 get_user:
     path: '/api/users'
     controller: App\Controller\ProfilController::getuserdataProfil

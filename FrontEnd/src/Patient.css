@@ -69,3 +69,12 @@ tfoot td {
     100% { transform: rotate(360deg); }
 }
 
+.patient-container {
+    text-align: center; /* Centrer le contenu horizontalement */
+}
+
+h1 {
+    margin-top: 50px; /* Ajouter un espacement en haut du titre */
+}
+
+/* Style du lien */

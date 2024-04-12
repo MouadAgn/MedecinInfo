@@ -4,6 +4,7 @@ import Home from './Home'
 import Patient from './Patient'
 import AddPatient from './AddPatient'
 import PatientAppointments from './PatientAppointments'
+import {Routes , Route} from "react-router-dom"
 import Profil from "./Profil" 
 
 function App() {
