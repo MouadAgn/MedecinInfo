@@ -30,7 +30,7 @@ class TreatmentController extends AbstractController
     public function getPatientWithTreatments(Patient $patient): Response
     {
         $treatments = $patient->getTreatment();
-
+        
         $data = [
             'patient' => [
                 'id' => $patient->getId(),
@@ -39,6 +39,7 @@ class TreatmentController extends AbstractController
             ],
             'treatments' => [],
         ];
+        
 
         foreach ($treatments as $treatment) {
             $data['treatments'][] = [
