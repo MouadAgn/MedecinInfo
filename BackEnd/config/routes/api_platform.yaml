@@ -57,11 +57,11 @@ get_all_patient:
 #     methods: ['DELETE']
 
 get_user:
-    path: '/api/users'
+    path: '/api/users/{id}'
     controller: App\Controller\ProfilController::getuserdataProfil
     methods: ['GET']
 
 post_login:
     path: '/api/login'
-    controller: App\Controller\LoginController::login
+    controller: App\Controller\LoginController::post_login
     methods: ['POST']
