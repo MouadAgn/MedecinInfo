@@ -14,18 +14,15 @@ function Patient() {
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/patients');
                 const patientsData = await response.json();
-                const numberOfPatients = patientsData.length;
-
+                
                 const allAppointments = [];
 
-                for (let i = 1; i <= numberOfPatients; i++) {
-                    const response = await fetch(`http://127.0.0.1:8000/api/appointments/patient/${i}`);
-                    const appointmentsData = await response.json();
+                for (const patient of patientsData) {
+                    const patientId = patient.id;
+                    const appointmentResponse = await fetch(`http://127.0.0.1:8000/api/appointments/patient/${patientId}`);
+                    const appointmentsData = await appointmentResponse.json();
 
-                    const existingAppointments = allAppointments.find(appointments => appointments.patientId === i);
-                    if (!existingAppointments) {
-                        allAppointments.push({ patientId: i, appointments: appointmentsData });
-                    }
+                    allAppointments.push({ patient: patient, appointments: appointmentsData });
                 }
                 
                 setAppointments(allAppointments);
