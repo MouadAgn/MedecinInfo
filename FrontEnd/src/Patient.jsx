@@ -7,30 +7,25 @@ import Footer from './Footer.jsx';
 function Patient() {
     const [loading, setLoading] = useState(true); // Ajout de l'état pour le chargement
     const [appointments, setAppointments] = useState([]);
+// État pour stocker le patient sélectionné pour la suppression
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Récupération des données des patients
                 const response = await fetch('http://127.0.0.1:8000/api/patients');
                 const patientsData = await response.json();
                 
-                // Création d'un tableau de promesses pour récupérer les rendez-vous de chaque patient
-                const appointmentPromises = patientsData.map(async (patient) => {
+                const allAppointments = [];
+
+                for (const patient of patientsData) {
                     const patientId = patient.id;
                     const appointmentResponse = await fetch(`http://127.0.0.1:8000/api/appointments/patient/${patientId}`);
-                    return appointmentResponse.json();
-                });
+                    const appointmentsData = await appointmentResponse.json();
 
-                // Attente de la résolution de toutes les promesses
-                const appointmentsData = await Promise.all(appointmentPromises);
-
-                // Combiner les données des patients et les rendez-vous correspondants
-                const combinedData = patientsData.map((patient, index) => {
-                    return { patient: patient, appointments: appointmentsData[index] };
-                });
-
-                setAppointments(combinedData);
+                    allAppointments.push({ patient: patient, appointments: appointmentsData });
+                }
+                
+                setAppointments(allAppointments);
                 setLoading(false); // Mettre à jour l'état du chargement une fois les données chargées
             } catch (error) {
                 console.error('Erreur lors de la récupération des données', error);
@@ -39,6 +34,8 @@ function Patient() {
 
         fetchData();
     }, []);
+
+
 
     return (
         <div className="patient-container">
@@ -64,20 +61,23 @@ function Patient() {
                         </tr>
                     </thead>
                     <tbody>
-                        {appointments.map((data, index) => (
-                            <tr key={index}>
-                                <td>{data.patient.id}</td>
-                                <td>{data.patient.name}</td>
-                                <td>{data.patient.dob}</td>
-                                <td>{data.patient.gender === 1 ? 'Homme' : 'Femme'}</td>
-                                <td>{data.patient.phone}</td>
-                                <td>{data.appointments.date ? `${data.appointments.date} à ${data.appointments.time}` : 'Pas de RDV'}</td>
+                        {appointments.map(patient => (
+                            <tr key={patient.appointments.patient.id}>
+                                <td>{patient.appointments.patient.id}</td>
+                                <td>{patient.appointments.patient.name}</td>
+                                <td>{patient.appointments.patient.dob}</td>
+                                <td>{patient.appointments.patient.gender === 1 ? 'Homme' : 'Femme'}</td>
+                                <td>{patient.appointments.patient.phone}</td>
+                                <td>{patient.appointments.appointments.date ? `${patient.appointments.appointments.date} à ${patient.appointments.appointments.time}` : 'Pas de RDV'}</td>
+
+                            
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <Link to="/patients/add" className="add-patient-button">Ajouter un patient</Link>
+                <Link to="/patients/add " className="add-patient-button">Ajouter un patient</Link>
                 &nbsp;<Link to="/planning" className="add-patient-button">Retour au planning</Link>
+                
                 </>
             )}
             <Footer />
