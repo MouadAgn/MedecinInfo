@@ -97,6 +97,7 @@ function Treatments() {
         </div>
         <div>
             <button><Link to={`/treatments/add/patient/${data.patient.id}`}> Cliquer Ici pour ajouter un traitement </Link></button>
+            <button><Link to={`/patients`}> Revenir à la liste des Patient </Link></button>
         </div>
         </div>
     )

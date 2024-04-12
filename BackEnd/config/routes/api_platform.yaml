@@ -55,3 +55,13 @@ get_all_patient:
 #     path: 'api/patients/{id}'
 #     controller: App\Controller\DeletePatientController::deletePatient
 #     methods: ['DELETE']
+
+get_user:
+    path: '/api/users'
+    controller: App\Controller\ProfilController::getuserdataProfil
+    methods: ['GET']
+
+post_login:
+    path: '/api/login'
+    controller: App\Controller\LoginController::login
+    methods: ['POST']

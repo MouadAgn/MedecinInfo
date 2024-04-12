@@ -9,6 +9,7 @@ import TreatmentsForm from './TreatmentsForm'
 import TreatmentsUpdate from './TreatmentsUpdate'
 import {Routes, Route} from "react-router-dom"
 
+import Profil from "./Profil" 
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/treatments/update/:treatmentid/patient/:patientid" element={<TreatmentsUpdate/>}></Route>
           <Route path="/patients" element={<Patient/>}></Route>
           {/* <Route path="/patients/add" element={<AddPatient/>}></Route> */}
+          <Route path="/profil" element={<Profil/>}></Route>
         </Routes>
     </div>  
   )

@@ -42,14 +42,14 @@ class AppointmentController extends AbstractController
         ];
 
         foreach ($appointments as $appointment) {
-            $data['appointments'] = [
+            $data['appointments'][] = [
                 'id' => $appointment->getId(),
                 'date' => $appointment->getDate()->format('Y-m-d'),
                 'time' => $appointment->getTime()->format('H:i:s'),
                 'comment' => $appointment->getComment(),
             ];
         }
-
+        $data['appointments'] = array_slice($data['appointments'], -5);
         return new JsonResponse($data);
     }
 

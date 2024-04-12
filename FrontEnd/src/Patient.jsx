@@ -80,8 +80,8 @@ function Patient() {
                                 <td>{patient.appointments.patient.phone}</td>
                                 <td>{patient.appointments.appointments.date ? `${patient.appointments.appointments.date} à ${patient.appointments.appointments.time}` : 'Pas de RDV'}</td>
                                 <td>
-                                    <button style={{backgroundColor: 'blue'}}>Modifier</button>&nbsp;&nbsp;
-                                    <button style={{backgroundColor: 'red'}} onClick={() => handleDelete(patient.appointments.patient.id)}>Supprimer</button>
+                                    <button style={{backgroundColor: 'blue'}}><Link to={`/treatments/patient/${patient.appointments.patient.id}`}>Traitements</Link></button>&nbsp;&nbsp;
+                                    <button style={{backgroundColor: 'red'}}><Link to={`/appointments/patient/${patient.appointments.patient.id}`}>Rendez-vous</Link></button>
                                 </td>
                             </tr>
                         ))}

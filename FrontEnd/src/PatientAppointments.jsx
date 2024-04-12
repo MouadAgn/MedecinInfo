@@ -46,14 +46,16 @@ function PatientAppointments() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr key={data.appointments.id}>
-                            <td>{data.appointments.date}</td>
-                            <td>{data.appointments.time}</td>
-                            <td>{data.appointments.comment}</td>
+                        {data && data.appointments.map(appointment => (
+                        <tr key={appointment.id}>
+                            <td>{appointment.date}</td>
+                            <td>{appointment.time}</td>
+                            <td>{appointment.comment}</td>
                         </tr>
+                        ))}
                     </tbody>
                 </table>
-                <Link to="/planning" className="back-link">Retour au planning</Link>
+                <button><Link to="/patients" className="back-link">Retour au patients</Link></button>
                 <Footer />
             </div>
         );
