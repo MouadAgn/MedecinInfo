@@ -1,5 +1,6 @@
 import Header from './Header.jsx';
 import './Login.css';
+import Footer from './Footer.jsx';
 
 export default function Login() {
   return (
@@ -20,6 +21,7 @@ export default function Login() {
         <button type="submit">Se connecter</button>
       </form>
       </div>
+      <Footer />
     </div>
 
     
