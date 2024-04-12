@@ -6,7 +6,6 @@
     font-family: Arial, sans-serif; /* Police générique */
   }
   
-  /* Styles pour le header */
   header {
     background-color: #7986c7;
     padding: 20px;
@@ -45,6 +44,8 @@
     text-align: center;
   }
   
+  /* Styles pour le header */
+ 
   .hero-content h1 {
     font-size: 3em; /* Taille de police augmentée */
     color: #333;

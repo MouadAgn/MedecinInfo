@@ -3,6 +3,7 @@ import './Planning.css';
 import { Link } from 'react-router-dom';
 
 import Header from './Header.jsx';
+import Footer from './Footer.jsx';
 
 function Planning() {
     const [data, setData] = useState([]);
@@ -22,30 +23,36 @@ function Planning() {
         }, []);
 
   return (
-    <div>
-        <Header />
-    <table>
-        <caption>Liste des rendez-vous</caption>
-        <thead>
-            <tr>
-                <th>Nom du patient</th>
-                <th>Date</th>
-                <th>Heure</th>
-                <th>Commentaire</th>
-            </tr>
-        </thead>
-        <tbody>
-            {data && data.map(appointment => (
-                <tr key={appointment.id}>
-                    <td><Link to={`/appointments/patient/${appointment.id}`}> {appointment.patient_name} </Link></td>
-                    <td>{appointment.date}</td>
-                    <td>{appointment.time}</td>
-                    <td>{appointment.comment}</td>
+    <div className="planning-container">
+        <Header /> <br></br><br></br><br></br>
+            <h1 className='titre'>Table des rendez-vous</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom du patient</th>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Commentaire</th>
                 </tr>
-            ))}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {data && data.map(appointment => (
+                    <tr key={appointment.id}>
+                        <td>
+                            <Link to={`/appointments/patient/${appointment.id}`} className="patient-link">
+                                <b>{appointment.patient_name}</b>
+                            </Link>
+                        </td>
+                        <td>{appointment.date}</td>
+                        <td>{appointment.time}</td>
+                        <td>{appointment.comment}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+        <Footer />  
     </div>
+   
   );
 }
 

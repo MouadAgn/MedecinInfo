@@ -1,6 +1,7 @@
 import './Home.css';
 import Header from './Header.jsx';
 import { Link } from 'react-router-dom';
+import Footer from './Footer.jsx';
 
 export default function Home() {
   return (
@@ -15,9 +16,7 @@ export default function Home() {
           <Link to="#" className="btn">Commencer</Link>
         </div>
       </section>
-      <footer>
-        <p>&copy; 2024 MedecinInfo. Tous droits réservés.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

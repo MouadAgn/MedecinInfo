@@ -68,11 +68,4 @@ tfoot td {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-.titre{
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333; /* Couleur du texte */
-    margin-bottom: 20px; 
-}
 

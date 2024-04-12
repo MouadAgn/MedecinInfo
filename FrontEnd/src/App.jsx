@@ -1,12 +1,14 @@
-import { Routes, Route} from "react-router-dom"
-
 import Login from './Login'
 import Planning from './Planning'
 import Home from './Home'
+import Patient from './Patient'
+// import AddPatient from './AddPatient'
 import PatientAppointments from './PatientAppointments'
 import Treatments from './Treatments'
 import TreatmentsForm from './TreatmentsForm'
 import TreatmentsUpdate from './TreatmentsUpdate'
+import {Routes, Route} from "react-router-dom"
+
 
 function App() {
   return (
@@ -20,8 +22,10 @@ function App() {
           <Route path="/treatments/add/patient/:id" element={<TreatmentsForm/>}></Route>
           <Route path="/treatments/delete/:treatmentid/patient/:patientid" element={<Treatments/>}></Route>
           <Route path="/treatments/update/:treatmentid/patient/:patientid" element={<TreatmentsUpdate/>}></Route>
+          <Route path="/patients" element={<Patient/>}></Route>
+          {/* <Route path="/patients/add" element={<AddPatient/>}></Route> */}
         </Routes>
-    </div>
+    </div>  
   )
 }
 

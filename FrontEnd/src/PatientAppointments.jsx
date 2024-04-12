@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function PatientAppointments() {
     const [data, setData] = useState([]);
@@ -21,35 +22,43 @@ function PatientAppointments() {
         fetchPatientData();
     }, [id]);
 
-    if (!data || !data.patient || !data.appointments) {
-        return <div>Loading...</div>;
+    if (!data || !data.patient || !data.appointments) 
+    {
+        return (
+            <div className="loading-container">
+              <div className="loader"></div>
+            </div>
+          );
       }
+      else{
+        return (
+            <div className="patient-appointments-container">
+                <Header />
+                <h2 className="tit">Informations du patient</h2>
+                <p className="patient-info">Nom : {data.patient.name}</p>
+                <table className="appointments-table">
+                    <caption>Rendez-vous</caption>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>Commentaire</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr key={data.appointments.id}>
+                            <td>{data.appointments.date}</td>
+                            <td>{data.appointments.time}</td>
+                            <td>{data.appointments.comment}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <Link to="/planning" className="back-link">Retour au planning</Link>
+                <Footer />
+            </div>
+        );
 
-    return (
-        <div>
-            <Header />
-            <h2>Informations du patient</h2>
-            <p>Nom : {data.patient.name}</p>
-            <table>
-                <caption>Rendez-vous</caption>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Heure</th>
-                        <th>Commentaire</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr key={data.appointments.id}>
-                        <td>{data.appointments.date}</td>
-                        <td>{data.appointments.time}</td>
-                        <td>{data.appointments.comment}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <Link to="/planning">Retour au planning</Link>
-        </div>
-    );
+      }
 }
 
 export default PatientAppointments;

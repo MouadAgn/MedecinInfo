@@ -3,7 +3,9 @@ api_platform:
     type: api_platform
     prefix: /api
 
-get_appointments_patient:
+# get_appointments_patient:
+
+get_patient_and_appointment:
     path: '/api/appointments/patient/{id}'
     controller: App\Controller\AppointmentController::getPatientWithAppointments
     methods: ['GET']
@@ -38,3 +40,18 @@ get_one_treatment:
     path: '/api/treatments/{id}'
     controller: App\Controller\TreatmentController::getOneTreatment
     methods: ['GET']
+
+get_all_patient:
+    path: '/api/patients'
+    controller: App\Controller\PatientController::getAllPatients  
+    methods: ['GET']
+
+# add_patient:
+#     path: '/api/patients/add'
+#     controller: App\Controller\AddPatientController::addPatient
+#     methods: ['POST']
+
+# delete_patient:
+#     path: 'api/patients/{id}'
+#     controller: App\Controller\DeletePatientController::deletePatient
+#     methods: ['DELETE']

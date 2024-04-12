@@ -33,7 +33,10 @@ class AppointmentController extends AbstractController
             'patient' => [
                 'id' => $patient->getId(),
                 'name' => $patient->getName(),
-                'dob' => $patient->getDob()->format('Y-m-d')
+                'dob' => $patient->getDob()->format('Y-m-d'),
+                'phone'=> $patient->getPhone(),
+                'gender' =>$patient->getGender(),
+
             ],
             'appointments' => [],
         ];
