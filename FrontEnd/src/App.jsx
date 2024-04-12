@@ -4,8 +4,7 @@ import Home from './Home'
 import Patient from './Patient'
 import AddPatient from './AddPatient'
 import PatientAppointments from './PatientAppointments'
-import {Routes, Route} from "react-router-dom"
-
+import Profil from "./Profil" 
 
 function App() {
  
@@ -18,6 +17,7 @@ function App() {
           <Route path="/appointments/patient/:id" element={<PatientAppointments/>}></Route>
           <Route path="/patients" element={<Patient/>}></Route>
           <Route path="/patients/add" element={<AddPatient/>}></Route>
+          <Route path="/profil" element={<Profil/>}></Route>
         </Routes>
     </div>  
   )
