@@ -75,7 +75,7 @@ function Patient() {
                         ))}
                     </tbody>
                 </table>
-                <Link to="/planning">Retour au planning</Link>
+                &nbsp;<Link to="/planning">Retour au planning</Link>
                 </>
             )}
             <Footer />
