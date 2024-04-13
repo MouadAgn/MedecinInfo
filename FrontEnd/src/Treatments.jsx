@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+
 function Treatments() {
     const [data, setData] = useState([]);
     const { id } = useParams();
@@ -10,7 +11,7 @@ function Treatments() {
     useEffect(() => {
         const fetchTreatments = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/treatments/patient/${id}`);
+                const response = await fetch(`http://127.0.0.1:8000/api/patient/treatments/${id}`);
                 const data = await response.json();
                 setData(data), console.log(data);
 
@@ -20,7 +21,7 @@ function Treatments() {
         };
 
         fetchTreatments();
-        }, [id]);
+    }, [id]);
 
         if (!data || !data.patient || !data.treatments) {
             return <div>Loading...</div>;
@@ -44,23 +45,6 @@ function Treatments() {
         }
     };
 
-    // const UpdateTreatment = async (patientid, treatmentid) => {
-    //     try {
-    //         const response = await fetch(`http://127.0.0.1:8000/api/treatments/update/${treatmentid}/patient/${patientid}`, {
-    //         method: 'PUT'
-    //         });
-
-    //         if (response.ok) {
-    //             console.log('Traitement modifié');
-    //             const newData = data.treatments.filter(treatment => treatment.id !== treatmentid);
-    //             setData({ ...data, treatments: newData });
-    //         } else {
-    //             console.error('Erreur lors de la modification du traitement:', await response.json());
-    //         }
-    //     } catch (error) {
-    //         console.error('Erreur lors de la modification du traitement', error);
-    //     }
-    // }
     return (
         <div>
             <div>
@@ -96,7 +80,8 @@ function Treatments() {
             </table>
         </div>
         <div>
-            <button><Link to={`/treatments/add/patient/${data.patient.id}`}> Cliquer Ici pour ajouter un traitement </Link></button>
+            <button><Link to={`/patient/treatments/add/${data.patient.id}`}> Cliquer Ici pour ajouter un traitement </Link></button>
+            <button><Link to={`/patients`}> Revenir à la liste des Patient </Link></button>
         </div>
         </div>
     )

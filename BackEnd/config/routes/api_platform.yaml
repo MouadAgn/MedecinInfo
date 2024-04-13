@@ -3,8 +3,9 @@ api_platform:
     type: api_platform
     prefix: /api
 
-get_appointments_patient:
-    path: '/api/appointments/patient/{id}'
+# Api Routes Appointments
+get_patient_and_appointment:
+    path: '/api/patient/appointments/{id}'
     controller: App\Controller\AppointmentController::getPatientWithAppointments
     methods: ['GET']
 
@@ -13,14 +14,41 @@ get_appointment:
     controller: App\Controller\AppointmentController::getAllAppointments
     methods: ['GET']
 
+post_appointment:
+    path: '/api/appointments/add/{id}'
+    controller: App\Controller\AppointmentController::addAppointment
+    methods: ['POST']
 
+# Api Routes Patients
+get_patient:
+    path: '/api/patients'
+    controller: App\Controller\PatientController::getAllPatients  
+    methods: ['GET']
+
+add_patient:
+    path: '/api/patients/add'
+    controller: App\Controller\AddPatientController::AddPatient
+    methods: ['POST']
+
+# Api Routes Authentification
+get_user:
+    path: '/api/users/{id}'
+    controller: App\Controller\ProfilController::getuserdataProfil
+    methods: ['GET']
+
+post_login:
+    path: '/api/login'
+    controller: App\Controller\LoginController::post_login
+    methods: ['POST']
+
+# Api Routes Treatments
 get_treatment_patient:
-    path: '/api/treatments/patient/{id}'
+    path: '/api/patient/treatments/{id}'
     controller: App\Controller\TreatmentController::getPatientWithTreatments
     methods: ['GET']
 
 post_treatment_patient:
-    path: '/api/treatments/add/patient/{id}'
+    path: '/api/patient/treatments/add/{id}'
     controller: App\Controller\TreatmentController::addTreatment
     methods: ['POST']
 

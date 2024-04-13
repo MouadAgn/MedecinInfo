@@ -1,12 +1,12 @@
 import Header from "./Header";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Treatments() {
     let { treatmentid, patientid } = useParams();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [name, setName] = useState('');
     const [datestart, setDateStart] = useState('');
@@ -22,8 +22,6 @@ function Treatments() {
                 setData(data), console.log(data);
                 if (data) {
                     setName(data.name);
-                    // const formattedDateStart = new Date(data.datestart).toLocaleDateString('fr-FR');
-                    // const formattedDateEnd = new Date(data.dateend).toLocaleDateString('fr-FR');
                     setDateStart(data.datestart);
                     setDateEnd(data.dateend);
                     setDosage(data.dosage);
@@ -60,7 +58,9 @@ function Treatments() {
                 });
 
                 if (response.ok) {
+                    
                     console.log('Traitement modifié');
+                    navigate(`/treatments/patient/${patientid}`);
                 } else {
                     console.error('Erreur lors de la modification du traitement:', await response.json());
                 }
