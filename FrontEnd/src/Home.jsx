@@ -13,7 +13,7 @@ export default function Home() {
         <div className="hero-content">
           <h1>Prenez soin de vos patients avec MedecinInfo</h1>
           <p>Une solution complète pour la gestion de vos patients, rendez-vous et traitements.</p>
-          <Link to="#" className="btn">Commencer</Link>
+          <Link to="/login" className="btn">Commencer</Link>
         </div>
       </section>
       <Footer />

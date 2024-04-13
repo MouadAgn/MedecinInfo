@@ -7,7 +7,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -26,7 +26,7 @@ export default function Login() {
       if (response.ok) {
         localStorage.setItem('id', JSON.stringify(data.id));
         // Redirigez l'utilisateur vers une autre page (par exemple, page d'accueil)
-        window.location.href = '/'; // Remplacez '/home' par l'URL de la page souhaitée
+        window.location.href = '/planning'; // Remplacez '/home' par l'URL de la page souhaitée
       } else {
         console.log("testr");
         setErrorMessage(data.message);
@@ -41,7 +41,7 @@ export default function Login() {
       <Header />
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit}>
-          <h2>Connexion</h2>
+          <h2>Connexion</h2><br></br>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <div className="input-group">
             <label htmlFor="email">Adresse e-mail :</label>

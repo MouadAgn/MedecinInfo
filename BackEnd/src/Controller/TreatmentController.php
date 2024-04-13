@@ -72,9 +72,6 @@ class TreatmentController extends AbstractController
 
         $patient = $this ->em->getRepository(Patient::class)->find($patientid);
 
-        if (!$patient) {
-            return new JsonResponse(['error' => 'Patient non trouvé'], 404);
-        }
 
         $treatment = new Treatment();
 

@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './TreatmentsForm.css';
+import Header from './Header';
+import Footer from './Footer';
+
 
 const TreatmentForm = () => {
   let { id } = useParams();
@@ -14,7 +18,7 @@ const TreatmentForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/treatments/add/patient/${id}`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/patient/treatments/add/${id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -30,16 +34,18 @@ const TreatmentForm = () => {
       });
 
       if (response.ok) {
-        navigate(`/treatments/patient/${id}`)
+        navigate(`/patient/treatments/${id}`)
       } else {
         console.error('Erreur lors de l\'ajout du traitement:', await response.json());
       }
     } catch (error) {
       console.error(error);
     }
-  };
+
+    }
 
   return (
+    <div><Header /><br></br>
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name">Nom du traitement :</label>
@@ -92,6 +98,10 @@ const TreatmentForm = () => {
       </div>
       <button type="submit">Ajouter le traitement</button>
     </form>
+    <Footer />
+    
+    
+    </div>
   );
 };
 

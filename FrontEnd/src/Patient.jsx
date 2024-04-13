@@ -7,25 +7,24 @@ import Footer from './Footer.jsx';
 function Patient() {
     const [loading, setLoading] = useState(true); // Ajout de l'état pour le chargement
     const [allAppointments, setAppointments] = useState([]);
-    // const [, setSelectedPatient] = useState(null); // État pour stocker le patient sélectionné pour la suppression
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/patients');
                 const patientsData = await response.json();
-                const numberOfPatients = patientsData.length;
+                
                 const allAppointments = [];
 
-                for (let i = 1; i <= numberOfPatients; i++) {
-                    const response = await fetch(`http://127.0.0.1:8000/api/appointments/patient/${i}`);
-                    const appointmentsData = await response.json();
+                for (const patient of patientsData) {
+                    const patientId = patient.id;
+                    const appointmentResponse = await fetch(`http://127.0.0.1:8000/api/patient/appointments/${patientId}`);
+                    const appointmentsData = await appointmentResponse.json();
 
-                    const existingAppointments = allAppointments.find(appointments => appointments.patientId === i);
-                    if (!existingAppointments) {
-                        allAppointments.push({ patientId: i, appointments: appointmentsData });
-                    }
+                    allAppointments.push({ patient: patient, appointments: appointmentsData });
                 }
+                
                 setAppointments(allAppointments);
                 setLoading(false); // Mettre à jour l'état du chargement une fois les données chargées
             } catch (error) {
@@ -35,6 +34,10 @@ function Patient() {
 
         fetchData();
     }, []);
+
+    const filteredAppointments = allAppointments.filter(patient => {
+        return patient.appointments.patient.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
 
     return (
         <div className="patient-container">
@@ -47,6 +50,12 @@ function Patient() {
                 <>
                 <br /><br />
                 <h1>Liste des patients</h1>
+                <input className="search-bar"
+                    type="text"
+                    placeholder="Rechercher par nom"
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    value={searchTerm}
+                />
                 <table>
                     <thead>
                         <tr>
@@ -60,7 +69,7 @@ function Patient() {
                         </tr>
                     </thead>
                     <tbody>
-                        {allAppointments.map(patient => (
+                        {filteredAppointments.map(patient => (
                             <tr key={patient.appointments.patient.id}>
                                 <td>{patient.appointments.patient.id}</td>
                                 <td>{patient.appointments.patient.name}</td>
@@ -69,14 +78,16 @@ function Patient() {
                                 <td>+33{patient.appointments.patient.phone}</td>
                                 <td>{patient.appointments.appointments.date ? `${patient.appointments.appointments.date} à ${patient.appointments.appointments.time}` : 'Pas de RDV'}</td>
                                 <td>
-                                    <button style={{backgroundColor: 'blue'}}><Link to={`/treatments/patient/${patient.appointments.patient.id}`}>Traitements</Link></button>&nbsp;&nbsp;
-                                    <button style={{backgroundColor: 'red'}}><Link to={`/appointments/patient/${patient.appointments.patient.id}`}>Rendez-vous</Link></button>
+                                    <button style={{backgroundColor: 'blue'}}><Link to={`/patient/treatments/${patient.appointments.patient.id}`}>Traitements</Link></button>&nbsp;&nbsp;
+                                    <button style={{backgroundColor: 'red'}}><Link to={`/patient/appointments/${patient.appointments.patient.id}`}>Rendez-vous</Link></button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <Link to="/planning">Retour au planning</Link>
+                {/* Les boutons doivent être situés en dehors de la balise <table> */}
+                <Link to="/patients/add" className="add-patient-button">Ajouter un patient</Link>&nbsp;
+                <Link to="/planning" className="patient-link">Retour au planning</Link>
                 </>
             )}
             <Footer />
