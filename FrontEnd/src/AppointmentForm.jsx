@@ -44,7 +44,7 @@ const AppointmentForm = () => {
 
     return (
         <div>
-            <Header />
+            <Header /><br></br><br></br><br></br>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="date">Date :</label>

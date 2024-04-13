@@ -39,7 +39,7 @@ function Planning() {
                 {data && data.map(appointment => (
                     <tr key={appointment.id}>
                         <td>
-                            <Link to={`/appointments/patient/${appointment.id}`} className="patient-link">
+                            <Link to={`/patient/appointments/${appointment.id}`} className="patient-link">
                                 <b>{appointment.patient_name}</b>
                             </Link>
                         </td>
