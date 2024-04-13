@@ -20,7 +20,7 @@ function Treatments() {
         };
 
         fetchTreatments();
-        }, [id]);
+    }, [id]);
 
         if (!data || !data.patient || !data.treatments) {
             return <div>Loading...</div>;

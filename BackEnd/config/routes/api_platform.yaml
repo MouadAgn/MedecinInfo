@@ -46,10 +46,10 @@ get_all_patient:
     controller: App\Controller\PatientController::getAllPatients  
     methods: ['GET']
 
-# add_patient:
-#     path: '/api/patients/add'
-#     controller: App\Controller\AddPatientController::addPatient
-#     methods: ['POST']
+add_patient:
+    path: '/api/patients/add'
+    controller: App\Controller\AddPatientController::addPatient
+    methods: ['POST']
 
 # delete_patient:
 #     path: 'api/patients/{id}'

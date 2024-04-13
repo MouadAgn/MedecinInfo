@@ -60,7 +60,9 @@ function Treatments() {
                 });
 
                 if (response.ok) {
+                    
                     console.log('Traitement modifié');
+                    navigate(`/treatments/patient/${patientid}`);
                 } else {
                     console.error('Erreur lors de la modification du traitement:', await response.json());
                 }
