@@ -26,7 +26,7 @@ class AppointmentController extends AbstractController
     /**
      * @Route("/api/appointments/patient/{id}", name="get_patient_with_appointments", methods={"GET"})
      */
-    // Cette route un seul rendez-vous pour les patients (utiliser dans patient/appointment/id_patient)
+    // Cette route renvoie un seul rendez-vous pour les patients (utiliser dans patient/appointment/id_patient)
     public function getPatientWithAppointments(Patient $patient): Response
     {
         $appointments = $patient->getAppointment();
@@ -57,7 +57,7 @@ class AppointmentController extends AbstractController
 
 
      /**
-     * @Route("/planning", name="planning")
+     * @Route("/planning", name="planning"), Affiche tout les rendez-vous
      */
     public function getAllAppointments(): Response
     {
@@ -125,6 +125,9 @@ class AppointmentController extends AbstractController
                 'comment' => $appointment->getComment(),
             ];
         }
+
+        // On ne garde que les 5 derniers rendez-vous
+        $data = array_slice($data, -5);
 
         return new JsonResponse($data);
     }
