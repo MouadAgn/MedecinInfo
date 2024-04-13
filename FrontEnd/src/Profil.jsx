@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Header from './Header.jsx';
-import './Profil.css';
+import './profil.css';
 
 function Profil() {
     const [data, setUserData] = useState(null);
