@@ -11,7 +11,7 @@ useEffect(() => {
     const userId = localStorage.getItem('id');
 
         // Appel API uniquement si un id est présent dans le localStorage
-        if (userId) {
+        if (userId)  {
             try {
                 const response = await fetch(`http://127.0.0.1:8000/api/users/${userId}`, {
                 headers: {
@@ -27,13 +27,11 @@ useEffect(() => {
                     navigate('/');
                 }
             } catch (error) {
-                // console.error('Erreur lors de la vérification de l\'utilisateur :', error);
                 setUserRole(null);
                 navigate('/');
             }
         } else {
                 setUserRole(null);
-                navigate('/');
         }
     };
 
