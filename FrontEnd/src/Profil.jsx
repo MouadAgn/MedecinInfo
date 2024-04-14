@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Header from './Header.jsx';
-import './Profil.css';
+import './profil.css';
+import Footer from './Footer.jsx';
+import ProtectedRoute from './Authentification';
 
 function Profil() {
     const [data, setUserData] = useState(null);
@@ -30,6 +32,7 @@ function Profil() {
     return (
         <div>
             <Header />
+            <ProtectedRoute allowedRoles={[1, 2]}>
             <div className="profil-container">
                 <h2 className="profil-title">Profil Utilisateur</h2><br></br>
                 {data ? (
@@ -44,6 +47,8 @@ function Profil() {
                     <div className="loading-message">Chargement...</div>
                 )}
             </div>
+            </ProtectedRoute>
+            <Footer />
         </div>
     );
 }
