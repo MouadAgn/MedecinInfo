@@ -56,12 +56,13 @@ class AppointmentController extends AbstractController
     }
 
 
-     /**
-     * @Route("/planning", name="planning"), Affiche tout les rendez-vous
-     */
+    /**
+    * @Route("/planning", name="planning"), Affiche les rendez-vous les plus récent (10 derniers) 
+    */
     public function getAllAppointments(): Response
     {
-        $appointments = $this->em->getRepository(Appointment::class)->findAll();
+        $appointments = $this->em->getRepository(Appointment::class)
+        ->findBy([], ['Date' => 'DESC'], 10);
 
         $data = [];
         foreach ($appointments as $appointment) {
@@ -73,7 +74,6 @@ class AppointmentController extends AbstractController
                 'comment' => $appointment->getComment(),
             ];
         }
-
         return new JsonResponse($data);
     }
 
@@ -104,13 +104,14 @@ class AppointmentController extends AbstractController
     }
 
     /**
-     * Route test, récupére tout les rendez-vous d'un patient
+     * Route test, récupère tous les rendez-vous d'un patient en triant par date la plus récente
      */
     #[Route('/apiRoute/patient/appointments/{id}', name: 'get_patient_appointments', methods: ['GET'])]
     public function getPatientAppointments(Patient $patient): Response
     {
         $appointments = $patient->getAppointment()->toArray();
 
+        // On trie les rendez-vous par date la plus récente
         usort($appointments, function($a, $b) {
             return $b->getDate()->getTimestamp() - $a->getDate()->getTimestamp();
         });

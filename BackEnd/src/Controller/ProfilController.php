@@ -39,6 +39,7 @@ class ProfilController extends AbstractController
                 'id' => $user->getId(),
                 'Nom' => $user->getNom(),
                 'Email' => $user->getEmail(),
+                'Role' => $user->getRole(),
                 // Never return password in the response!
                 // 'Password'=> $user->getPassword()
             ]
