@@ -29,8 +29,8 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
           navigate('/');
         }
       } else {
-        setUserRole(null);
-        navigate('/');
+        setUserRole(0);
+        console.log("esle3");
       }
     };
 

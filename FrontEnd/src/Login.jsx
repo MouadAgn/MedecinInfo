@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Header from './Header.jsx';
 import './Login.css';
+// import ProtectedRoute from './Authentification';
+import Footer from './Footer.jsx';
 
 
 export default function Login() {
@@ -20,7 +22,7 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
         credentials: 'same-origin'
       });
-      console.log("Réponse de l'API :", response);
+      // console.log("Réponse de l'API :", response);
       const data = await response.json();
       console.log(data);
       if (response.ok) {
@@ -39,6 +41,7 @@ export default function Login() {
   return (
     <div>
       <Header />
+      {/* <ProtectedRoute allowedRoles={[]}> */}
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <h2>Connexion</h2><br></br>
@@ -68,6 +71,8 @@ export default function Login() {
           <button type="submit">Se connecter</button>
         </form>
       </div>
+      {/* </ProtectedRoute> */}
+      <Footer />
     </div>
   );
 }
